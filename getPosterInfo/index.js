@@ -5,7 +5,7 @@ const PUPPETEER_WAIT_UNTIL = "networkidle2";
 const LOAD_TIMEOUT = 3 * 60 * 1000;
 const ELEMENT_RENDER_TIMEOUT = 10 * 1000;
 
-export const POSTER_IMG_FILE_TYPE = "webp";
+const POSTER_IMG_FILE_TYPE = "webp";
 
 const PUPPETEER_OPTIONS = {
   headless: true,
@@ -42,7 +42,7 @@ functions.http("getPosterInfo", async (req, res) => {
   if (!posterLayoutElement) {
     throw new Error("posterLayout not exist");
   }
-  await page.evaluate((el: HTMLElement) => {
+  await page.evaluate((el) => {
     el.style.position = "relative";
     el.style.right = "auto";
   }, posterLayoutElement);
@@ -51,9 +51,7 @@ functions.http("getPosterInfo", async (req, res) => {
     type: POSTER_IMG_FILE_TYPE,
   });
 
-  const posterDataJson = await page.evaluate(
-    () => (window as any).posterDataJson
-  );
+  const posterDataJson = await page.evaluate(() => window.posterDataJson);
 
   res.send({
     imgBuffer,
