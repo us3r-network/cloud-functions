@@ -1,0 +1,19 @@
+{
+  "name": "enchanft-cloud-functions",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "author": "shixuewen",
+  "license": "MIT",
+  "scripts": {
+    "gcp-build": "node node_modules/puppeteer/install.js",
+    "build": "tsc",
+    "start": "npm run build & npx functions-framework --target=getPosterInfo"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.3.0",
+    "puppeteer": "19.3.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3"
+  }
+}
